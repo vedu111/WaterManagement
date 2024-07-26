@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+
+import React from 'react';
+import Map from '../Components/Map';
+
+const Home = () => {
+    
+    return (
+        <div>
+            <h1>City XYZ Water Supply Complaints</h1>
+           <Map />
+=======
 // src/Pages/Home.jsx
 import React from 'react';
 import CityPartButtons from '../Components/CityPartButtons';
@@ -13,6 +25,7 @@ const Home = () => {
         <div>
             <h1>City XYZ Water Supply Complaints</h1>
             <CityPartButtons parts={cityParts} />
+>>>>>>> origin/main
         </div>
     );
 };
