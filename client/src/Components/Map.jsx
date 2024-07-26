@@ -5,10 +5,10 @@ import './Map.css';
 const Map = () => {
   return (
     <div>
-      <img className="img1" src={A} alt="" />
+      <img className="img1" src={A} alt="1" />
     </div>
   )
 }
 
-export default Map
+export default Map;
 
