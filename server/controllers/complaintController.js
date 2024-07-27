@@ -1,4 +1,3 @@
-// controllers/complaintController.js
 const UserComplaint = require('../models/UserComplaint');
 const fs = require('fs');
 const path = require('path');
@@ -9,7 +8,7 @@ exports.submitComplaint = (req, res) => {
     if (err) {
       return res.status(400).send(err.message);
     }
-    const { name, phoneNumber, address, category } = req.body;
+    const { name, phoneNumber, address, subRegion, category } = req.body;
     const image = {
       data: req.file ? fs.readFileSync(path.join(__dirname, '../uploads/' + req.file.filename)) : null,
       contentType: req.file ? req.file.mimetype : null
@@ -19,6 +18,7 @@ exports.submitComplaint = (req, res) => {
       name,
       phoneNumber,
       address,
+      subRegion,
       image,
       category
     });
@@ -30,4 +30,23 @@ exports.submitComplaint = (req, res) => {
       res.status(500).send('Server error');
     }
   });
+};
+
+exports.fetchComplaints = async (req, res) => {
+  try {
+    const complaints = await UserComplaint.find();
+    res.status(200).json(complaints);
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+};
+
+exports.fetchComplaintsBySubRegion = async (req, res) => {
+  const { subRegion } = req.params;
+  try {
+    const complaints = await UserComplaint.find({ subRegion });
+    res.status(200).json(complaints);
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
 };

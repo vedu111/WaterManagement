@@ -1,16 +1,15 @@
 import React from 'react';
-import Home from './Pages/Home';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
+import Home from './Pages/Home/Home';
+import RegionDetails from './Pages/RegionDetails/RegionDetails';
 
-const App = () => {
-    return (
-        <div>
-            <Home />
-        </div>
-    );
-};
+const App = () => (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:id" element={<RegionDetails />} />
+      </Routes>
+    </Router>
+  );
 
-<<<<<<< HEAD
-export default App;  
-=======
 export default App;
->>>>>>> origin/main

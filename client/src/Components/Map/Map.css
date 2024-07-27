@@ -1,0 +1,168 @@
+body {
+  font-family: 'Poppins', sans-serif; /* Apply Poppins font to the entire body */
+}
+
+.navbar {
+  position: absolute; /* Change position to absolute */
+  top: 0;
+  left: 50%; /* Position the navbar in the middle horizontally */
+  transform: translateX(-50%); /* Center the navbar horizontally */
+  background: white;
+  height: 60px;
+  display: flex;
+  justify-content: center; /* Center the navbar container */
+  align-items: center;
+  font-size: 1rem;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px; /* Rounds the borders */
+  width: 90%; /* Adjust the width of the navbar */
+  max-width: 1200px; /* Maximum width for the navbar */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: center; /* Center the elements inside the container */
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 100%; /* Ensure it takes full width of the navbar */
+  padding: 0 50px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.nav-item {
+  height: 60px; /* Match the height of the navbar */
+}
+
+.nav-links {
+  color: #000; /* Adjust text color if needed */
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+}
+
+.nav-links:hover {
+  color: #15cdfc; /* Adjust hover color if needed */
+  transition: all 0.2s ease-in-out;
+}
+
+/* .map-container {
+  position: absolute;
+  top: 60px; 
+  left: 0; 
+  width: 50%;
+  height: 0;
+  padding-bottom: 75%;
+  background-color: #f0f0f0; 
+}
+
+.region-image {
+  position: absolute;
+  height: auto;
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+
+.region-image:hover,
+.region-image.hovered {
+  filter: brightness(1.2) saturate(1.2);
+} */
+
+/* ... (keep the existing styles) ... */
+
+.map-container {
+  position: absolute;
+  top: 60px; 
+  left: 0; 
+  width: 50%;
+  height: 0;
+  padding-bottom: 75%;
+  background-color: #f0f0f0; 
+}
+
+.region-container {
+  position: absolute;
+  height: auto;
+  cursor: pointer;
+}
+
+.region-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.region-overlay.Depalpur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s ease;
+  mask-image: url('../../assets/indore_map_g1.png');
+  mask-size: 100% 100%;
+  -webkit-mask-image: url('../../assets/indore_map_g1.png');
+  -webkit-mask-size: 100% 100%;
+}
+
+.region-overlay.Hatod {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s ease;
+  mask-image: url('../../assets/indore_map_g2.png');
+  mask-size: 100% 100%;
+  -webkit-mask-image: url('../../assets/indore_map_g2.png');
+  -webkit-mask-size: 100% 100%;
+}
+
+.region-overlay.Sawer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s ease;
+  mask-image: url('../../assets/indore_map_g3.png');
+  mask-size: 100% 100%;
+  -webkit-mask-image: url('../../assets/indore_map_g3.png');
+  -webkit-mask-size: 100% 100%;
+}
+
+.region-overlay.Indore {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s ease;
+  mask-image: url('../../assets/indore_map_g4.png');
+  mask-size: 100% 100%;
+  -webkit-mask-image: url('../../assets/indore_map_g4.png');
+  -webkit-mask-size: 100% 100%;
+}
+
+.region-overlay.Mhow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s ease;
+  mask-image: url('../../assets/indore_map_g5.png');
+  mask-size: 100% 100%;
+  -webkit-mask-image: url('../../assets/indore_map_g5.png');
+  -webkit-mask-size: 100% 100%;
+}

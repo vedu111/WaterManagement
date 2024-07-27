@@ -1,4 +1,3 @@
-// models/UserComplaint.js
 const mongoose = require('mongoose');
 
 const UserComplaintSchema = new mongoose.Schema({
@@ -11,6 +10,10 @@ const UserComplaintSchema = new mongoose.Schema({
     required: true
   },
   address: {
+    type: String,
+    required: true
+  },
+  subRegion:{
     type: String,
     required: true
   },
