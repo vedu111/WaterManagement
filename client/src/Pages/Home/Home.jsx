@@ -2,14 +2,13 @@ import React from 'react';
 import Navbar from '../../Components/NavBar/Navbar';
 import Map from '../../Components/Map/Map';
 import image from '../../assets/home.jpg';
-import mockApk from '../../assets/mock-app.apk'; // Add your APK file here
 
 const Home = () => {
+
   const handleImageClick = () => {
-    const link = document.createElement('a');
-    link.href = mockApk; // URL or path to your APK file
-    link.download = 'mock-app.apk'; // Filename for the downloaded file
-    link.click();
+    // Handle the image click event, e.g., download an APK or navigate to a link
+    console.log('Image clicked');
+    // Add the desired functionality here, such as downloading a file or navigating to another page
   };
 
   return (

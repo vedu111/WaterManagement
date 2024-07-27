@@ -105,7 +105,7 @@ const RegionDetails = () => {
       </div>
       <h1>{region.name}</h1>
       <p>Complaints: {region.complaints}</p>
-      <Table />
+      <Table location={region.name} />
     </div>
   );
 };

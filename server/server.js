@@ -4,6 +4,7 @@ const path = require('path');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/authRoutes');
 const complaintRoutes = require('./routes/complaintRoutes');
+const parameterRoutes = require('./routes/parameters');
 const app = express();
 const cors = require('cors');
 
@@ -22,16 +23,7 @@ app.use(cors({
 
 app.use('/api/auth', userRoutes);
 app.use('/api/complaints', complaintRoutes);
-
-app.post('/storeParameters', async (req, res) => {
-  try {
-      const parameters = req.body.parameters;
-      await Parameter.insertMany(parameters);
-      res.status(200).json({ message: 'Parameters stored successfully' });
-  } catch (error) {
-      res.status(500).json({ message: 'Failed to store parameters', error });
-  }
-});
+app.use('/parameters', parameterRoutes);
 
 const PORT = process.env.PORT || 5000;
 

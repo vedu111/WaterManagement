@@ -2,30 +2,28 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Table.css';
 
-const mock_db = [
-    // High Feasibility
-    { parameter: 'Average income per capita (Rs.)/Year', value: 30000, feasibility: 'high' },
-    { parameter: 'Average energy cost (Rs. /kWHr)', value: 10, feasibility: 'high' },
-    { parameter: 'Population density (count/sq. Km)', value: 1500, feasibility: 'high' },
-    { parameter: 'Height from sea-level (meters)', value: 100, feasibility: 'high' },
-
-    // Moderate Feasibility
-    { parameter: 'Average Temperature (Degree centigrade)', value: 26, feasibility: 'moderate' },
-    { parameter: 'Total Consumption', value: 500, feasibility: 'moderate' },
-    { parameter: 'Flow rate (Kl per Day)', value: 250, feasibility: 'moderate' },
-    { parameter: 'Household infrastructure (Percentage of Building)', value: 70, feasibility: 'moderate' },
-
-    // Low Feasibility
-    { parameter: 'Household infrastructure (Percentage of Bunglow)', value: 30, feasibility: 'low' },
-    { parameter: 'Socio-economic factor (Rating 1-5 worst to best)', value: 3, feasibility: 'low' },
-    { parameter: 'Peer effect percent', value: 50, feasibility: 'low' },
-    { parameter: 'Const', value: 0, feasibility: 'low' },
-];
-
-const Table = () => {
-    const [values, setValues] = useState(mock_db.map(param => param.value));
+const Table = ({ location }) => {
+    const [parameters, setParameters] = useState({});
+    const [values, setValues] = useState([]);
     const [totalCost, setTotalCost] = useState(0);
-    const [featureImportances, setFeatureImportances] = useState(Array(mock_db.length).fill(0));
+    const [featureImportances, setFeatureImportances] = useState([]);
+
+    useEffect(() => {
+        if (location) {
+            fetchParameters();
+        }
+    }, [location]);
+
+    const fetchParameters = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/parameters/${location}`);
+            const fetchedParameters = response.data;
+            setParameters(fetchedParameters);
+            setValues(Object.values(fetchedParameters).slice(1)); // Skip the first value (SubRegion)
+        } catch (error) {
+            console.error('Error fetching parameters:', error);
+        }
+    };
 
     const handleChange = (index, event) => {
         const newValues = [...values];
@@ -35,7 +33,7 @@ const Table = () => {
 
     const seekPrediction = async (values) => {
         try {
-            const response = await axios.post('http://127.0.0.1:5000/predict', {
+            const response = await axios.post('http://localhost:5000/predict', {
                 data: values.map(Number)
             });
             if (response.data) {
@@ -48,18 +46,24 @@ const Table = () => {
     };
 
     useEffect(() => {
-        seekPrediction(values);
+        if (values.length) {
+            seekPrediction(values);
+        }
     }, [values]);
 
     const handleSubmit = async () => {
         try {
-            const parameters = mock_db.map((param, index) => ({
-                parameter: param.parameter,
-                value: values[index],
-                feasibility: param.feasibility,
-            }));
+            const parametersToSubmit = {
+                SubRegion: location,
+                ...Object.keys(parameters).reduce((acc, key, index) => {
+                    if (key !== 'SubRegion') {
+                        acc[key] = values[index - 1]; // Skip the first value (SubRegion)
+                    }
+                    return acc;
+                }, {})
+            };
 
-            const response = await axios.post('http://127.0.0.1:5000/storeParameters', { parameters });
+            const response = await axios.post('http://localhost:5000/parameters/storeParameters', { parameters: parametersToSubmit });
             if (response.status === 200) {
                 alert('Parameters stored successfully');
             }
@@ -67,6 +71,10 @@ const Table = () => {
             console.error('Error storing parameters:', error);
         }
     };
+
+    if (!location) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="container">
@@ -85,22 +93,25 @@ const Table = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {mock_db.map((Parameter, index) => {
-                                    if (Parameter.feasibility === feasibility) {
-                                        return (
-                                            <tr key={Parameter.parameter}>
-                                                <td className="current-price center">21</td>
-                                                <td className="center">{Parameter.parameter}</td>
-                                                <td className="center">{Parameter.value}</td>
-                                                <td>
-                                                    <textarea
-                                                        value={values[index]}
-                                                        onChange={(e) => handleChange(index, e)}
-                                                    />
-                                                </td>
-                                                <td className="price-after center">{featureImportances[index] || 'N/A'}</td>
-                                            </tr>
-                                        );
+                                {Object.entries(parameters).map(([key, value], index) => {
+                                    if (key !== 'SubRegion') {
+                                        const feasibilityValue = value >= 50 ? 'high' : value >= 20 ? 'moderate' : 'low';
+                                        if (feasibilityValue === feasibility) {
+                                            return (
+                                                <tr key={key}>
+                                                    <td className="current-price center">21</td>
+                                                    <td className="center">{key}</td>
+                                                    <td className="center">{value}</td>
+                                                    <td>
+                                                        <textarea
+                                                            value={values[index - 1]}
+                                                            onChange={(e) => handleChange(index - 1, e)}
+                                                        />
+                                                    </td>
+                                                    <td className="price-after center">{featureImportances[index - 1] || 'N/A'}</td>
+                                                </tr>
+                                            );
+                                        }
                                     }
                                     return null;
                                 })}
@@ -116,4 +127,3 @@ const Table = () => {
 };
 
 export default Table;
-
