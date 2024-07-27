@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import {NavbarDefault} from '../../Components/NavBar/NavbarDefault';
+import Navbar from '../../Components/NavBar/Navbar';
 import Table from '../../Components/Table/Table';
 import ComplainPreviewButton from '../../Components/ComplaintPreview/ComplaintPreview';
 

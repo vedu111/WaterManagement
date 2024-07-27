@@ -1,11 +1,11 @@
 import React from 'react';
-import {NavbarDefault} from '../../Components/NavBar/NavbarDefault';
+import Navbar from '../../Components/NavBar/Navbar';
 import Map from '../../Components/Map/Map';
 
 const Home = () => {
     return (
         <div>
-       <NavbarDefault />
+       <Navbar />
        <Map />
       </div>   
     );
