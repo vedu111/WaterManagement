@@ -21,6 +21,14 @@ const UserComplaintSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  category_2: {
+    type: String,
+    required: false
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  },
   image: {
     data: Buffer,
     contentType: String

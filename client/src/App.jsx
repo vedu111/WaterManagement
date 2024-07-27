@@ -5,6 +5,7 @@ import RegionDetails from './Pages/RegionDetails/RegionDetails';
 import Signup from './Components/Authentication/SignUp/signup';
 import Login from './Components/Authentication/Login/Login';
 import ComplaintForm from './Components/ComplaintForm/ComplaintForm';
+
 const App = () => (
     <Router>
       <Routes>

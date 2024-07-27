@@ -10,7 +10,7 @@ exports.submitComplaint = (req, res) => {
       return res.status(400).send(err.message);
     }
 
-    const { name, phoneNumber, address, subRegion, category } = req.body;
+    const { name, phoneNumber, address, subRegion, category, category_2, date } = req.body;
 
     let image = {};
     if (req.file) {
@@ -26,6 +26,8 @@ exports.submitComplaint = (req, res) => {
       address,
       subRegion,
       category,
+      category_2,
+      date: date ? new Date(date) : undefined,
       image
     });
 
@@ -52,10 +54,13 @@ exports.fetchComplaints = async (req, res) => {
 exports.fetchComplaintsBySubRegion = async (req, res) => {
   const { subRegion } = req.params;
   try {
-    const complaints = await UserComplaint.find({ subRegion });
+    console.log('SubRegion received:', subRegion);
+
+    const complaints = await UserComplaint.find({ subRegion: subRegion.trim() }); // Ensure no leading/trailing spaces
     res.status(200).json(complaints);
   } catch (err) {
     console.error('Fetch by subregion error:', err);
     res.status(500).send('Server error');
   }
 };
+

@@ -56,29 +56,16 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-/* .map-container {
-  position: absolute;
-  top: 60px; 
-  left: 0; 
-  width: 50%;
-  height: 0;
-  padding-bottom: 75%;
-  background-color: #f0f0f0; 
-}
-
 .region-image {
-  position: absolute;
-  height: auto;
-  transition: filter 0.3s ease;
-  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
 .region-image:hover,
 .region-image.hovered {
   filter: brightness(1.2) saturate(1.2);
-} */
-
-/* ... (keep the existing styles) ... */
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 
 .map-container {
   position: absolute;
@@ -87,7 +74,7 @@ body {
   width: 50%;
   height: 0;
   padding-bottom: 75%;
-  background-color: #f0f0f0; 
+  background-color: #ffffff; 
 }
 
 .region-container {
@@ -102,13 +89,16 @@ body {
   display: block;
 }
 
-.region-overlay.Depalpur {
+.region-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   transition: background-color 0.3s ease;
+}
+
+.region-overlay.Depalpur {
   mask-image: url('../../assets/Depalpur.png');
   mask-size: 100% 100%;
   -webkit-mask-image: url('../../assets/Depalpur.png');
@@ -116,12 +106,6 @@ body {
 }
 
 .region-overlay.Hatod {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: background-color 0.3s ease;
   mask-image: url('../../assets/Hatod.png');
   mask-size: 100% 100%;
   -webkit-mask-image: url('../../assets/Hatod.png');
@@ -129,12 +113,6 @@ body {
 }
 
 .region-overlay.Sawer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: background-color 0.3s ease;
   mask-image: url('../../assets/Sawer.png');
   mask-size: 100% 100%;
   -webkit-mask-image: url('../../assets/Sawer.png');
@@ -142,12 +120,6 @@ body {
 }
 
 .region-overlay.Indore {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: background-color 0.3s ease;
   mask-image: url('../../assets/Indore.png');
   mask-size: 100% 100%;
   -webkit-mask-image: url('../../assets/Indore.png');
@@ -155,14 +127,40 @@ body {
 }
 
 .region-overlay.Mhow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: background-color 0.3s ease;
   mask-image: url('../../assets/Mhow.png');
   mask-size: 100% 100%;
   -webkit-mask-image: url('../../assets/Mhow.png');
   -webkit-mask-size: 100% 100%;
+}
+
+.region-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  pointer-events: none; /* Ensure text doesn't interfere with click events */
+}
+
+.region-complaints {
+  position: absolute;
+  top: 60%; /* Adjust the top position to increase spacing */
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 1em;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  pointer-events: none; /* Ensure text doesn't interfere with click events */
+}
+
+/* Specific adjustments for Depalpur and Mhow */
+.region-container.Depalpurc .region-container .region-name{
+  top: 70%;
+}
+.region-container.Depalpur .region-complaints,
+.region-container.Mhow .region-complaints {
+  top: 70%; /* Increase top value to create more space between the name and complaints */
 }

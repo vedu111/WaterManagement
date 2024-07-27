@@ -27,7 +27,7 @@ const MapComponent = () => {
   };
 
   const handleClick = (regionId) => {
-    navigate(`/${regionId}`); // use navigate function
+    navigate(`/${regionId}`);
   };
 
   return (
@@ -56,6 +56,17 @@ const MapComponent = () => {
               backgroundColor: hoveredRegion === region.id ? getColor(region.complaints) : 'transparent'
             }}
           />
+          <div className="region-name">
+            {region.id}
+          </div>
+          <div 
+            className="region-complaints"
+            style={{
+              color: getColor(region.complaints)
+            }}
+          >
+            {region.complaints} complaints
+          </div>
         </div>
       ))}
     </div>
@@ -63,5 +74,3 @@ const MapComponent = () => {
 };
 
 export default MapComponent;
-
-

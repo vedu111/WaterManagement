@@ -8,13 +8,11 @@ const Login = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,7 +32,6 @@ const Login = () => {
         localStorage.setItem('token', data.token);
         window.location.href = '/';
         setError('');
-        // Handle successful login (e.g., redirect or store auth token)
       } else {
         setError(data.message || 'Login failed!');
         setSuccess('');

@@ -5,90 +5,105 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    background-color: #f5f5f5; /* Light background for overall page */
 }
 
 .div-main {
-    padding: 2px;
-    border: solid;
-    border-width: 1px;
-    border-color: green;
+    padding: 20px;
+    border: solid 1px #4CAF50; /* Using a more standard green color */
     width: 220px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px;
     flex-direction: column;
-    margin-top: 3px;
+    align-items: center; /* Center align items horizontally */
+    justify-content: center; /* Center align items vertically */
+    border-radius: 15px;
+    margin: 20px auto; /* Center the div horizontally with margin */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+    background-color: #ffffff; /* Ensure background is white */
 }
 
 .div1 {
-    background-color: white;
+    background-color: #ffffff; /* Consistent white background */
     height: 80px;
-    width: 205px;
+    width: 100%; /* Full width of parent */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center; /* Center align items horizontally */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Light inset shadow */
+    padding: 10px; /* Add padding inside the div */
 }
 
 .div2 {
-    background-color: white;
-    font-size: larger;
-    font-weight: bold;
-    margin-right: 20px;
-    margin-left: 2px;
-    margin-bottom: 2px;
+    background-color: #ffffff;
+    font-size: 1.1em; /* Slightly larger font size */
+    font-weight: 500; /* Medium weight for better readability */
+    margin: 10px 0; /* Vertical margin for spacing */
+    color: #333; /* Darker color for better contrast */
+    text-align: center; /* Center align text */
 }
 
 .div3 {
     display: flex;
     align-items: center;
+    justify-content: center; /* Center align items horizontally */
+    margin-top: 10px; /* Space between div2 and div3 */
+}
+
+.tag-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the start */
+    width: 100%; /* Full width of parent */
+    margin-top: 10px; /* Space between div3 and tag-container */
+}
+
+.tag1, .tag2 {
+    font-size: 14px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 15px; /* Slightly larger border-radius for pill shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+    margin: 5px; /* Margin around each tag */
 }
 
 .tag1 {
-    font-size: 15px;
-    color: rgb(53, 176, 53);
-    height: 25px;
-    padding-left: 5px;
-    width: 90px;
-    border: solid;
-    border-color: rgb(53, 176, 53);
-    border-radius: 25px;
-    border-width: 1.5px;
-    margin-right: 8px;
+    color: #4CAF50; /* Consistent green color */
+    border: 1.5px solid #4CAF50;
 }
 
 .tag1:hover {
-    opacity: 75%;
+    background-color: #e8f5e9; /* Light green background on hover */
+    color: #388E3C; /* Darker green text on hover */
 }
 
 .tag2 {
-    font-size: 15px;
-    color: rgb(227, 24, 89);
-    height: 25px;
-    padding-left: 5px;
-    width: 90px;
-    background-color: rgb(239, 219, 225);
-    border: solid;
-    border-color: rgb(227, 24, 89);
-    border-radius: 25px;
-    border-width: 1.5px;
+    color: #E31859; /* Consistent red color */
+    background-color: #FCE4EC; /* Light pink background */
+    border: 1.5px solid #E31859;
 }
 
 .tag2:hover {
-    opacity: 75%;
+    background-color: #F8BBD0; /* Light pink background on hover */
+    color: #C2185B; /* Darker pink text on hover */
 }
 
 .div4 {
-    background-color: white;
-    margin-top: 2px;
-    color: rgb(53, 176, 53);
-    margin-left: 12px;
+    background-color: #ffffff;
+    color: #4CAF50; /* Consistent green color */
     font-size: 12px;
+    margin-top: 20px; /* Increased space above div4 */
+    text-align: center; /* Center align text */
 }
 
 .date {
-    font-size: 10px;
-    color: black;
-    font-weight: bold;
-    margin-left: 55px;
+    font-size: 12px; /* Slightly larger font size for readability */
+    color: #000; /* Standard black color */
+    font-weight: 500; /* Medium weight for better readability */
+    margin-top: 20px; /* Space above date */
+    text-align: center; /* Center align text */
 }

@@ -1,46 +1,31 @@
-import React from 'react'
-import './ComplaintPreview.css'
+import React from 'react';
+import './ComplaintPreview.css';
 
-let db = [
-    {
-        "username" : "Abhilasha Patil",
-        "Tag1":"issue",
-        "Tag2":"insufficient",
-        "Date":"24-3-2024",
-        "Area":"rajwada area",
-        "query":"too many leaks and nobody is paying attention"
-    },
-    {
-        "username" : "Aman Jain",
-        "Tag1":"drainage",
-        "Tag2":"pipe-leak",
-        "Date":"25-3-2024",
-        "Area":"geeta nagar",
-        "query":"too many leaks and nobody is paying attention"
-    }
-]
+const ComplaintPreview = ({ complaints, loading }) => {
+  if (loading) return <p>Loading...</p>;
+  if (complaints.length === 0) return <p>No complaints found.</p>;
 
- const ComplaintPreview = () => {
-
-    
   return (
-
-    db.map((user)=>{
-        return(
-            <>
-            <div class = "div-main">
-            <div class="div1">  
-               <div class="div2">{user.username}</div>
-               <div class="div3"><button class="tag1">{user.Tag1}</button>  <button class="tag2">{user.Tag2}</button> </div>
-               <div class="div4">{user.Area}<span class="date">{user.Date}</span></div>
+    <>
+      {complaints.map((complaint, index) => (
+        <div className="div-main" key={index}>
+          <div className="div1">
+            <div className="div2">{complaint.name}</div>
+            <div className="div3">
+              <button className="tag1">{complaint.category}</button>
+              {complaint.category_2 && (
+                <button className="tag2">{complaint.category_2}</button>
+              )}
             </div>
+            <div className="div4">
+              {complaint.address}
+              <span className="date">{new Date(complaint.date).toLocaleDateString()}</span>
+            </div>
+          </div>
         </div>
-        </>
-        )
-    })
-    
-
-  )
+      ))}
+    </>
+  );
 };
 
 export default ComplaintPreview;
