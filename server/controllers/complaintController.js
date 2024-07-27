@@ -64,3 +64,15 @@ exports.fetchComplaintsBySubRegion = async (req, res) => {
   }
 };
 
+exports.countComplaints = async (req, res) => {
+  try {
+    const complaintsData = await UserComplaint.aggregate([
+      { $group: { _id: "$subRegion", complaints: { $sum: 1 } } }
+    ]);
+    res.json(complaintsData);
+  } catch (error) {
+    console.error('Error in countComplaints:', error);
+    res.status(500).json({ message: 'Server Error', error: error.message });
+  }
+};
+

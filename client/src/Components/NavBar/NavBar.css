@@ -1,33 +1,34 @@
-body {
-  font-family: 'Poppins', sans-serif; /* Apply Poppins font to the entire body */
-}
-
 .navbar {
-  position: absolute; /* Change position to absolute */
-  top: 0;
-  left: 50%; /* Position the navbar in the middle horizontally */
-  transform: translateX(-50%); /* Center the navbar horizontally */
-  background: white;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(83, 140, 255, 0.9);
+  backdrop-filter: blur(10px);
   height: 60px;
   display: flex;
-  justify-content: center; /* Center the navbar container */
+  justify-content: center;
   align-items: center;
   font-size: 1rem;
-  z-index: 10;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 10px; /* Rounds the borders */
-  width: 90%; /* Adjust the width of the navbar */
-  max-width: 1200px; /* Maximum width for the navbar */
+  z-index: 1000;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  width: 90%;
+  max-width: 1200px;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar:hover {
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
 }
 
 .navbar-container {
   display: flex;
-  justify-content: center; /* Center the elements inside the container */
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   width: 100%;
-  max-width: 100%; /* Ensure it takes full width of the navbar */
-  padding: 0 50px;
+  padding: 0 30px;
 }
 
 .nav-menu {
@@ -35,25 +36,28 @@ body {
   align-items: center;
   list-style: none;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-item {
-  height: 60px; /* Match the height of the navbar */
+  height: 60px;
+  padding: 0 15px;
 }
 
 .nav-links {
-  color: #000; /* Adjust text color if needed */
+  color: #333;
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding: 0 1rem;
   height: 100%;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-weight: 500;
 }
 
 .nav-links:hover {
-  color: #15cdfc; /* Adjust hover color if needed */
-  transition: all 0.2s ease-in-out;
+  color: #15cdfc;
 }
 
 .profile-container {
@@ -65,26 +69,48 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  object-fit: cover;
+  transition: all 0.2s ease-in-out;
+}
+
+.profile-pic:hover {
+  transform: scale(1.1);
 }
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: 60px;
   right: 0;
-  background-color: black;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  background-color: rgb(103, 149, 255);
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  min-width: 150px;
 }
 
 .dropdown-item {
   display: block;
   padding: 10px 20px;
+  color: #333;
   text-decoration: none;
-  color: black;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .dropdown-item:hover {
-  background-color: #f1f1f1;
+  background-color: #f0f0f0;
+}
+
+.dropdown-item.logout {
+  color: #ff4d4d;
+}
+
+/* NavBar.css */
+.logo-image {
+  height: 50px; /* Adjust the height as needed */
+  width: auto;  /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure the image fits within its container */
+  display: block; /* Removes any unwanted extra space below the image */
+  margin: 0; /* Remove any default margins */
+  padding: 0; /* Remove any default padding */
+  
 }

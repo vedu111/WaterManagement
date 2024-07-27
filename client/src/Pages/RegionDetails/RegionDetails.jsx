@@ -17,19 +17,37 @@ const RegionDetails = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [regionData, setRegionData] = useState({});
+  const [maxComplaints, setMaxComplaints] = useState(0);
 
-  const regionData = {
-    Depalpur: { name: 'Depalpur', complaints: 50, image: image1 },
-    Hatod: { name: 'Hatod', complaints: 30, image: image2 },
-    Sawer: { name: 'Sawer', complaints: 80, image: image3 },
-    Indore: { name: 'Indore', complaints: 20, image: image4 },
-    Mhow: { name: 'Mhow', complaints: 60, image: image5 }
+  const images = {
+    Depalpur: image1,
+    Hatod: image2,
+    Sawer: image3,
+    Indore: image4,
+    Mhow: image5
   };
+
+  useEffect(() => {
+    const fetchRegionData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/complaints/regions');
+        const data = response.data.reduce((acc, item) => {
+          acc[item._id] = { name: item._id, complaints: item.complaints, image: images[item._id] };
+          return acc;
+        }, {});
+        setRegionData(data);
+        setMaxComplaints(Math.max(...Object.values(data).map(r => r.complaints)));
+      } catch (error) {
+        console.error('Error fetching region data:', error);
+      }
+    };
+
+    fetchRegionData();
+  }, []);
 
   const region = regionData[id] || { name: 'Unknown', complaints: 0, image: null };
 
-  // Calculate color based on complaints
-  const maxComplaints = Math.max(...Object.values(regionData).map(r => r.complaints));
   const getColor = (complaints) => {
     const intensity = Math.floor((complaints / maxComplaints) * 255);
     return `rgb(255, ${255 - intensity}, ${255 - intensity})`;
