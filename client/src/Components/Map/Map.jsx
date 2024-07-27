@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Map.css';
-import image1 from '../../assets/indore_map_g1.png';
-import image2 from '../../assets/indore_map_g2.png';
-import image3 from '../../assets/indore_map_g3.png';
-import image4 from '../../assets/indore_map_g4.png';
-import image5 from '../../assets/indore_map_g5.png';
+import image1 from '../../assets/Depalpur.png';
+import image2 from '../../assets/Hatod.png';
+import image3 from '../../assets/Sawer.png';
+import image4 from '../../assets/Indore.png';
+import image5 from '../../assets/Mhow.png';
 
 const MapComponent = () => {
   const [hoveredRegion, setHoveredRegion] = useState(null);

@@ -13,7 +13,11 @@ const UserComplaintSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  subRegion:{
+  subRegion: {
+    type: String,
+    required: true
+  },
+  category: {
     type: String,
     required: true
   },
@@ -21,10 +25,6 @@ const UserComplaintSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String
   },
-  category: {
-    type: String,
-    required: true
-  }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('UserComplaint', UserComplaintSchema);

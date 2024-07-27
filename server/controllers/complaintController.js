@@ -6,27 +6,34 @@ const upload = require('../middleware/multer');
 exports.submitComplaint = (req, res) => {
   upload(req, res, async (err) => {
     if (err) {
+      console.error('Multer error:', err);
       return res.status(400).send(err.message);
     }
+
     const { name, phoneNumber, address, subRegion, category } = req.body;
-    const image = {
-      data: req.file ? fs.readFileSync(path.join(__dirname, '../uploads/' + req.file.filename)) : null,
-      contentType: req.file ? req.file.mimetype : null
-    };
+
+    let image = {};
+    if (req.file) {
+      image = {
+        data: fs.readFileSync(path.join(__dirname, '../uploads/' + req.file.filename)),
+        contentType: req.file.mimetype
+      };
+    }
 
     const newComplaint = new UserComplaint({
       name,
       phoneNumber,
       address,
       subRegion,
-      image,
-      category
+      category,
+      image
     });
 
     try {
       await newComplaint.save();
       res.status(201).json({ msg: 'Complaint submitted successfully' });
     } catch (err) {
+      console.error('Save error:', err);
       res.status(500).send('Server error');
     }
   });
@@ -37,6 +44,7 @@ exports.fetchComplaints = async (req, res) => {
     const complaints = await UserComplaint.find();
     res.status(200).json(complaints);
   } catch (err) {
+    console.error('Fetch error:', err);
     res.status(500).send('Server error');
   }
 };
@@ -47,6 +55,7 @@ exports.fetchComplaintsBySubRegion = async (req, res) => {
     const complaints = await UserComplaint.find({ subRegion });
     res.status(200).json(complaints);
   } catch (err) {
+    console.error('Fetch by subregion error:', err);
     res.status(500).send('Server error');
   }
 };

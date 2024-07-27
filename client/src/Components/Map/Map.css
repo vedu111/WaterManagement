@@ -109,9 +109,9 @@ body {
   width: 100%;
   height: 100%;
   transition: background-color 0.3s ease;
-  mask-image: url('../../assets/indore_map_g1.png');
+  mask-image: url('../../assets/Depalpur.png');
   mask-size: 100% 100%;
-  -webkit-mask-image: url('../../assets/indore_map_g1.png');
+  -webkit-mask-image: url('../../assets/Depalpur.png');
   -webkit-mask-size: 100% 100%;
 }
 
@@ -122,9 +122,9 @@ body {
   width: 100%;
   height: 100%;
   transition: background-color 0.3s ease;
-  mask-image: url('../../assets/indore_map_g2.png');
+  mask-image: url('../../assets/Hatod.png');
   mask-size: 100% 100%;
-  -webkit-mask-image: url('../../assets/indore_map_g2.png');
+  -webkit-mask-image: url('../../assets/Hatod.png');
   -webkit-mask-size: 100% 100%;
 }
 
@@ -135,9 +135,9 @@ body {
   width: 100%;
   height: 100%;
   transition: background-color 0.3s ease;
-  mask-image: url('../../assets/indore_map_g3.png');
+  mask-image: url('../../assets/Sawer.png');
   mask-size: 100% 100%;
-  -webkit-mask-image: url('../../assets/indore_map_g3.png');
+  -webkit-mask-image: url('../../assets/Sawer.png');
   -webkit-mask-size: 100% 100%;
 }
 
@@ -148,9 +148,9 @@ body {
   width: 100%;
   height: 100%;
   transition: background-color 0.3s ease;
-  mask-image: url('../../assets/indore_map_g4.png');
+  mask-image: url('../../assets/Indore.png');
   mask-size: 100% 100%;
-  -webkit-mask-image: url('../../assets/indore_map_g4.png');
+  -webkit-mask-image: url('../../assets/Indore.png');
   -webkit-mask-size: 100% 100%;
 }
 
@@ -161,8 +161,8 @@ body {
   width: 100%;
   height: 100%;
   transition: background-color 0.3s ease;
-  mask-image: url('../../assets/indore_map_g5.png');
+  mask-image: url('../../assets/Mhow.png');
   mask-size: 100% 100%;
-  -webkit-mask-image: url('../../assets/indore_map_g5.png');
+  -webkit-mask-image: url('../../assets/Mhow.png');
   -webkit-mask-size: 100% 100%;
 }

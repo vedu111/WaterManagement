@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Navbar from '../../Components/NavBar/NavBar';
+import {NavbarDefault} from '../../Components/NavBar/NavbarDefault';
+import Table from '../../Components/Table/Table';
+import ComplainPreviewButton from '../../Components/ComplaintPreview/ComplaintPreview';
 
 const RegionDetails = () => {
   const { id } = useParams();
@@ -19,8 +21,10 @@ const RegionDetails = () => {
   return (
     <div>
        <Navbar />
+       <ComplainPreviewButton />
       <h1>{region.name}</h1>
       <p>Complaints: {region.complaints}</p>
+      <Table />
     </div>
   );
 };

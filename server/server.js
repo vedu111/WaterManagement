@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -22,7 +21,8 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Init Middleware
 app.use(express.json({ extended: false }));
-app.use(cors());
+app.use(cors({
+}));
 
 // Define Routes
 app.use('/api/auth', userRoutes);
