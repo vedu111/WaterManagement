@@ -10,16 +10,18 @@ body {
 
 .div-main {
     padding: 20px;
-    border: solid 1px #4CAF50; /* Using a more standard green color */
+    border: solid 1px #4CAF50;
     width: 220px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center align items horizontally */
-    justify-content: center; /* Center align items vertically */
+    align-items: center;
+    justify-content: center;
     border-radius: 15px;
-    margin: 20px auto; /* Center the div horizontally with margin */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
-    background-color: #ffffff; /* Ensure background is white */
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    height: 150px;
+    margin-top: 2px;
 }
 
 .div1 {
@@ -57,9 +59,11 @@ body {
     justify-content: flex-start; /* Align items to the start */
     width: 100%; /* Full width of parent */
     margin-top: 10px; /* Space between div3 and tag-container */
+    height: 100px;
 }
 
 .tag1, .tag2 {
+    background-color: #d7ffd8;
     font-size: 14px;
     height: 30px;
     padding: 0 10px;

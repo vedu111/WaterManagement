@@ -11,6 +11,7 @@ import image2 from '../../assets/Hatod.png';
 import image3 from '../../assets/Sawer.png';
 import image4 from '../../assets/Indore.png';
 import image5 from '../../assets/Mhow.png';
+import indoreDetail from '../../assets/indoreDetail.png';
 
 const RegionDetails = () => {
   const { id } = useParams();

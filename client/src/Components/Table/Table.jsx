@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Table.css';
 
+function historic_data_mock(value) {
+    let feasibleValue = (value - value * 0.1).toFixed(2);
+    return feasibleValue;
+}
+
 const Table = ({ location }) => {
     const [parameters, setParameters] = useState({});
     const [values, setValues] = useState([]);
@@ -104,7 +109,7 @@ const Table = ({ location }) => {
                                                     <td className="center">{value}</td>
                                                     <td>
                                                         <textarea
-                                                            value={values[index - 1]}
+                                                            value={values[index - 1] || ''} // Display the current value in the textarea
                                                             onChange={(e) => handleChange(index - 1, e)}
                                                         />
                                                     </td>
@@ -120,7 +125,7 @@ const Table = ({ location }) => {
                     </div>
                 </div>
             ))}
-            <h2>Total Cost: {totalCost || 'N/A'}</h2>
+            <h2>-----------</h2>
             <button onClick={handleSubmit}>Submit</button>
         </div>
     );

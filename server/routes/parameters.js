@@ -5,7 +5,7 @@ const Parameter = require('../models/Parameter');
 // Fetch parameters by subRegion
 router.get('/:subRegion', async (req, res) => {
     try {
-        const parameters = await Parameter.findOne({ SubRegion: req.params.subRegion });
+        const parameters = await Parameter.findOne({ SubRegion: req.params.subRegion }).select('-_id -__v');
         if (!parameters) {
             return res.status(404).json({ message: 'Parameters not found' });
         }
@@ -15,7 +15,7 @@ router.get('/:subRegion', async (req, res) => {
         res.status(500).json({ message: 'Server error', error });
     }
 });
-
+    
 // Store or update parameters
 router.post('/storeParameters', async (req, res) => {
     try {
