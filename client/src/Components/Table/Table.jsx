@@ -10,8 +10,8 @@ function historic_data_mock(value) {
 const Table = ({ location }) => {
     const [parameters, setParameters] = useState({});
     const [values, setValues] = useState([]);
-    const [totalCost, setTotalCost] = useState(0);
-    const [featureImportances, setFeatureImportances] = useState([]);
+    const [priceAfter, setPriceAfter] = useState('0.00');
+    const weights = [0.35257367021117375, 0.1388041054932766, 0.1082300815133856, 0.104557210677632, 0.08192149027823058, 0.07290422646688384, 0.0367651272761632, 0.03269451875151552, 0.023244497264111673, 0.022528263914997102, 0.0194739630516802, 0.006302845100949923];
 
     useEffect(() => {
         if (location) {
@@ -24,7 +24,9 @@ const Table = ({ location }) => {
             const response = await axios.get(`http://localhost:5000/parameters/${location}`);
             const fetchedParameters = response.data;
             setParameters(fetchedParameters);
-            setValues(Object.values(fetchedParameters).slice(1)); // Skip the first value (SubRegion)
+            const initialValues = Object.values(fetchedParameters).slice(1);
+            setValues(initialValues);
+            setPriceAfter(calculatePriceAfter(initialValues));
         } catch (error) {
             console.error('Error fetching parameters:', error);
         }
@@ -34,27 +36,25 @@ const Table = ({ location }) => {
         const newValues = [...values];
         newValues[index] = event.target.value;
         setValues(newValues);
+        setPriceAfter(calculatePriceAfter(newValues));
     };
 
-    const seekPrediction = async (values) => {
-        try {
-            const response = await axios.post('http://localhost:5000/predict', {
-                data: values.map(Number)
-            });
-            if (response.data) {
-                setFeatureImportances(response.data.feature_importances);
-                setTotalCost(response.data.total_cost);
-            }
-        } catch (error) {
-            console.error('Error fetching prediction:', error);
-        }
-    };
+    const calculatePriceAfter = (currentValues) => {
+        const total = currentValues.reduce((acc, value, index) => {
+            const historicValue = Number(historic_data_mock(Number(value)));
+            return acc + weights[index] * historicValue;
+        }, 0);
 
-    useEffect(() => {
-        if (values.length) {
-            seekPrediction(values);
-        }
-    }, [values]);
+        // Normalize the price to be between 15 and 21
+        const minPrice = 15;
+        const maxPrice = 21;
+        const normalizedPrice = ((total / 10 - minPrice) / (maxPrice - minPrice)) * (maxPrice - minPrice) + minPrice;
+
+        // Ensure the price is within the range
+        const clampedPrice = Math.max(minPrice, Math.min(maxPrice, normalizedPrice));
+
+        return clampedPrice.toFixed(2);
+    };
 
     const handleSubmit = async () => {
         try {
@@ -106,14 +106,16 @@ const Table = ({ location }) => {
                                                 <tr key={key}>
                                                     <td className="current-price center">21</td>
                                                     <td className="center">{key}</td>
-                                                    <td className="center">{value}</td>
+                                                    <td className="center">{historic_data_mock(value)}</td>
                                                     <td>
                                                         <textarea
-                                                            value={values[index - 1] || ''} // Display the current value in the textarea
+                                                            value={values[index - 1] || ''}
                                                             onChange={(e) => handleChange(index - 1, e)}
                                                         />
                                                     </td>
-                                                    <td className="price-after center">{featureImportances[index - 1] || 'N/A'}</td>
+                                                    <td className="price-after center">
+                                                        {priceAfter}
+                                                    </td>
                                                 </tr>
                                             );
                                         }
@@ -125,7 +127,6 @@ const Table = ({ location }) => {
                     </div>
                 </div>
             ))}
-            <h2>-----------</h2>
             <button onClick={handleSubmit}>Submit</button>
         </div>
     );
